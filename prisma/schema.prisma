@@ -12,4 +12,5 @@ model Post {
   title     String   @db.VarChar(255)
   createdAt DateTime @default(now()) @db.Timestamp(0)
   content   String?  @db.Text
+  type      String   @db.VarChar(255)
 }

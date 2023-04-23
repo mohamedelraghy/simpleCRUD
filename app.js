@@ -4,13 +4,17 @@ const postRoute = require('./routes/post');
 
 const app = express();
 
+app.use(express.json());
 
 app.get('/', (req, res, next) => {
-  res.send('Hello World!');
+  console.log('heare');
+  res.json('Hello World!');
 })
 
 
 app.use('/post', postRoute);
+
+
 
 app.listen(3000, ()=> {
   console.log(`app listening on port`);

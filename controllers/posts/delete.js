@@ -1,6 +1,6 @@
 const { PrismaClient } = require('@prisma/client');
 
-const prisma = PrismaClient();
+const prisma = new PrismaClient();
 
 async function deletePost(req, res, next) {
   const { id } = req.params

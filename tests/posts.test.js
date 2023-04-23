@@ -1,13 +1,13 @@
 const axios =require('axios');
 const { createPost } = require('../../../../../Self Study/web/JS/Nodejs - ( Max )/RestApi Project/controllers/feed');
 
-const API_BASE_URL = 'http://localhost:3000/post';
+const API_BASE_URL = 'http://localhost:3000/posts';
 
 describe('Post API endpoints', () => {
   
   let createdPostId;
 
-  test('GET / return a list of users', async () => {
+  test('GET / return a list of posts', async () => {
     const response = await axios.get(`${API_BASE_URL}`);
     expect(response.status).toBe(200);
     expect(response.data).toBeInstanceOf(Object);

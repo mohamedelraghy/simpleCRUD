@@ -13,12 +13,13 @@ async function createPost (req, res, next) {
     return next(error)
   }
 
-  const { title, content } = req.body
+  const { title, content, type } = req.body
   try {
     const post = await prisma.post.create({
       data: {
         title,
-        content
+        content,
+        type
       }
     });
 

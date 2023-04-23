@@ -20,6 +20,12 @@ router.post('/create-post', [
     .withMessage('Content is required!')
     .isLength({min: 10})
     .withMessage('Content is at least 10 character long'),
+  body('type')
+    .not()
+    .isEmpty()
+    .withMessage('type is required!')
+    .isLength({min: 5})
+    .withMessage('type is at least 5 character long'),
 ], postController.createPost);
 
 router.put('/:id', [
@@ -35,6 +41,12 @@ router.put('/:id', [
     .withMessage('Content is required!')
     .isLength({min: 10})
     .withMessage('Content is at least 10 character long'),
+  body('type')
+  .not()
+  .isEmpty()
+  .withMessage('type is required!')
+  .isLength({min: 5})
+  .withMessage('type is at least 5 character long'),
 ], postController.updatePost);
 
 router.delete('/:id', postController.deletePost);

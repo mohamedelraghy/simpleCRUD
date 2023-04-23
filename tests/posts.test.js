@@ -27,6 +27,12 @@ describe('Post API endpoints', () => {
     createdPostId = response.data.post.id;
   });
 
+  test('GET /post/:id returns a specific post by ID', async () => {
+    const response = await axios.get(`${API_BASE_URL}/${createdPostId}`);
+    expect(response.status).toBe(200);
+    expect(response.data.post.id).toBe(createdPostId);
+  });
+
   test('PUT /:id update post with a give id', async ()=> {
     const updatedPost = {
       title: "Edited Post",
@@ -41,7 +47,12 @@ describe('Post API endpoints', () => {
 
   test('DELETE /:id delete post with a given id', async() => {
     const response = await axios.delete(`${API_BASE_URL}/${createdPostId}`);
-    console.log(response);
     expect(response.status).toBe(204);
+
+    try {
+      await axios.get(`${API_BASE_URL}/${createdPostId}`);
+    } catch (error) {
+      expect(error.response.status).toBe(404);
+    }
   });
 });

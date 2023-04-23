@@ -14,8 +14,6 @@ app.get('/', (req, res, next) => {
 
 app.use('/post', postRoute);
 
-
-
 app.listen(3000, ()=> {
   console.log(`app listening on port`);
 })

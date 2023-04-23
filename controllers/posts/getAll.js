@@ -27,9 +27,20 @@ async function getAll(req, res, next) {
       throw error; 
     }
 
+    const totalPost = await prisma.post.count({
+      where: {
+        type: type? { contains: type }: undefined,
+        title: title? { contains: title }: undefined,
+        content: content? { contains: content }: undefined
+      },
+    });
+
     res.status(200).json({
       message: "Posts fetched successfully",
-      posts: posts
+      posts: posts,
+      totalPost,
+      totalPages: Math.ceil(totalPost / perPage),
+      currentPage
     });
 
   } catch (error) {

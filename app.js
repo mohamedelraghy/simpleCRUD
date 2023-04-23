@@ -6,12 +6,6 @@ const app = express();
 
 app.use(express.json());
 
-app.get('/', (req, res, next) => {
-  console.log('heare');
-  res.json('Hello World!');
-})
-
-
 app.use('/post', postRoute);
 
 app.use((error, req, res, next) => {

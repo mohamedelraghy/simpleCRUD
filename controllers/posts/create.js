@@ -6,12 +6,13 @@ const prisma = new PrismaClient();
 async function createPost (req, res, next) {
   
   const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    const error = new Error('Validation failed Entered data is incorrect');
-    error.statusCode = 442;
-    next(error);
-  }
   
+  if (!errors.isEmpty()) {
+    const error = new Error('Validation failed, entered data is incorrect.');
+    error.statusCode = 422;
+    return next(error)
+  }
+
   const { title, content } = req.body
   try {
     const post = await prisma.post.create({

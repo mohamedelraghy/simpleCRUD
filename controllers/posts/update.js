@@ -1,4 +1,5 @@
 const { PrismaClient } = require('@prisma/client');
+const { validationResult } = require('express-validator');
 
 const prisma = new PrismaClient();
 
@@ -29,7 +30,7 @@ async function updatePost(req, res, next) {
       throw error; 
     }
 
-    res.statusCode(200).json({
+    res.status(200).json({
       message: "Post Updated",
       post: post
     });

@@ -7,6 +7,8 @@ const router = express.Router();
 
 router.get('/', postController.getAll);
 
+router.get('/:id', postController.getPost);
+
 router.post('/create-post', [
   body('title')
     .not()

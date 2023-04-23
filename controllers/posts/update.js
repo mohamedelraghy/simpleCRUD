@@ -13,14 +13,15 @@ async function updatePost(req, res, next) {
   }
   
   const { id } = req.params
-  const { title, content } = req.body;
+  const { title, content, type } = req.body;
 
   try {
     const post = await prisma.post.update({
       where: { id: Number(id) },
       data: {
         title: title,
-        content: content
+        content: content,
+        type: type
       },
     });
 

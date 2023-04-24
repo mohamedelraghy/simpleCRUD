@@ -9,8 +9,9 @@ async function getPost(req, res, next) {
   const { id } = req.params;
 
   try {    
-    checkPost(id, next);
 
+    checkPost(id);
+    
     res.status(200).json({
       message: "Post Fetched",
       post: post

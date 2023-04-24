@@ -14,7 +14,7 @@ exports.validate = (req, next) => {
   }
 };
 
-exports.checkPost = async (id, next) => {
+exports.checkPost = async (id) => {
   
   const post = await prisma.post.findFirst({
     where: {
@@ -25,6 +25,6 @@ exports.checkPost = async (id, next) => {
   if (!post) {
     const error = new Error(`Post with ID ${id} does not exist in the database`);
     error.statusCode = 404;
-    return next(error); 
+    return Promise.reject(error); 
   }
 };

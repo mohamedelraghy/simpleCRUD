@@ -13,9 +13,8 @@ async function updatePost(req, res, next) {
   
   try {
 
-    checkPost(id, next);
-    console.log('reach');
-    
+    checkPost(id);
+
     const updatedPost = await prisma.post.update({
       where: { id: Number(id) },
       data: {

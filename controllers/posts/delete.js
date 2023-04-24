@@ -18,9 +18,9 @@ async function deletePost(req, res, next) {
     });
 
     res.status(204).json({
-      message: "Post deleted",
-      post: deletedPost
+      message: "Post Deleted!"
     });
+
   } catch (error) {
     if (!error.statusCode) {
       error.statusCode = 500;

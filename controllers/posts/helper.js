@@ -26,5 +26,7 @@ exports.checkPost = async (id) => {
     const error = new Error(`Post with ID ${id} does not exist in the database`);
     error.statusCode = 404;
     return Promise.reject(error); 
+  } else { 
+    return post;
   }
 };

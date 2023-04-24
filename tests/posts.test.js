@@ -27,7 +27,7 @@ describe('Post API endpoints', () => {
     createdPostId = response.data.post.id;
   });
 
-  test('GET /post/:id returns a specific post by ID', async () => {
+  test('GET /posts/:id returns a specific post by ID', async () => {
     const response = await axios.get(`${API_BASE_URL}/${createdPostId}`);
     expect(response.status).toBe(200);
     expect(response.data.post.id).toBe(createdPostId);

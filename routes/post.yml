@@ -1,0 +1,176 @@
+---
+# This is a Swagger specification for a simple CRUD API with posts resource
+swagger: '3.0'
+info:
+  title: Simple CRUD Operation
+  version: '1.0.0'
+
+# Define the list of endpoints for posts resource
+paths:
+  /posts:
+    # Define the HTTP GET method to retrieve all posts
+    get:
+      summary: Returns the list of all posts
+      tags:
+        - Posts
+      parameters:
+        - in: query
+          name: currentPage
+          schema:
+            type: integer
+          description: The number of current page
+        - in: query
+          name: perPage
+          schema: 
+            type: integer
+          description: The number of post to be shown in page
+        - in: query
+          name: title
+          schema:
+            type: string
+          description: Filter posts with it's title
+        - in: query
+          name: content
+          schema:
+            type: string
+          description: Filter posts with it's content
+        - in: query
+          name: type
+          schema:
+            type: string
+          description: Filter posts with it's type
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Post'
+
+    # Define the HTTP POST method to create a new post
+  /posts/create-post:
+    post:
+      summary: Create a new post
+      tags:
+        - Posts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Post'
+            
+
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+        '422':
+          description: Validation Error
+   
+  /posts/{postId}:
+    # Define the HTTP GET method to retrieve a single post
+    get:
+      summary: Returns a post by id
+      tags:
+        - Posts
+      parameters:
+        - in: path
+          name: postId
+          description: The ID of the post to retrieve
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+        '404':
+          description: Not Found
+    
+    # Define the HTTP PUT method to update a post by id
+    put:
+      summary: Updates a post by id
+      tags:
+        - Posts
+      parameters:
+        - in: path
+          name: postId
+          description: The ID of the post to update
+          required: true
+          schema:
+            type: number
+         
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Post'
+            example: 
+              title: "Edited New Post"
+              content: "Edited New Post Content"
+              type: "Technologies"
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+              example: 
+                title: "Edited New Post"
+                content: "Edited New Post Content"
+                type: "Technologies"
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+    # Define the HTTP DELETE method to delete a post by id
+    delete:
+      summary: Deletes a post by id
+      tags:
+        - Posts
+      parameters:
+        - in: path
+          name: postId
+          description: The ID of the post to delete
+          required: true
+          schema:
+            type: number
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+
+
+# Define reusable components for schemas and security
+components:
+  schemas:
+    Post:
+      type: object
+      properties:
+        title:
+          type: string
+        content:
+          type: string
+        type:
+          type: string
+      required:
+        - title
+        - content
+        - type
+      example: 
+        title: "New Post"
+        content: "New Post Content"
+        type: "Techno"

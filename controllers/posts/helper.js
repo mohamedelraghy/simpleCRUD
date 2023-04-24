@@ -16,6 +16,7 @@ exports.validate = (req, next) => {
 
 exports.checkPost = async (id) => {
   
+  
   const post = await prisma.post.findFirst({
     where: {
       id: Number(id),

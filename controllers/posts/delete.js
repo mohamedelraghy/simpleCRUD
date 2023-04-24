@@ -1,22 +1,15 @@
 const { PrismaClient } = require('@prisma/client');
 
+const { checkPost } = require('./helper');
+
 const prisma = new PrismaClient();
 
 async function deletePost(req, res, next) {
   const { id } = req.params;
 
   try {
-    const post = await prisma.post.findFirst({
-      where: {
-        id: Number(id),
-      },
-    });
     
-    if (!post) {
-      const error = new Error(`Post with ID ${id} does not exist in the database`);
-      error.statusCode = 404;
-      throw error; 
-    }
+    checkPost(id, next);
 
     const deletedPost = await prisma.post.delete({
       where: {

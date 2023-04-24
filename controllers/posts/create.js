@@ -1,17 +1,12 @@
 const { PrismaClient } = require('@prisma/client');
-const { validationResult } = require('express-validator');
+
+const { validate } = require('./helper');
 
 const prisma = new PrismaClient();
 
 async function createPost (req, res, next) {
   
-  const errors = validationResult(req);
-  
-  if (!errors.isEmpty()) {
-    const error = new Error('Validation failed, entered data is incorrect.');
-    error.statusCode = 422;
-    return next(error)
-  }
+  validate(req, next);
 
   const { title, content, type } = req.body
   try {
@@ -22,7 +17,6 @@ async function createPost (req, res, next) {
         type
       }
     });
-
     res.status(201).json({
       message: "Post Created",
       post: post

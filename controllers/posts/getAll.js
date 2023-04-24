@@ -4,8 +4,7 @@ const prisma = new PrismaClient();
 
 async function getAll(req, res, next) {
 
-  const {currentPage = 1, type, title, content} = req.query;   
-  const perPage = 2;
+  const {currentPage = 1, type, title, content, perPage = 2} = req.query;   
   
   try {
     const posts = await prisma.post.findMany({

@@ -13,7 +13,7 @@ async function updatePost(req, res, next) {
   
   try {
 
-    checkPost(id);
+    await checkPost(id);
 
     const updatedPost = await prisma.post.update({
       where: { id: Number(id) },

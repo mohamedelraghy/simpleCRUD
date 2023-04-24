@@ -9,7 +9,7 @@ async function deletePost(req, res, next) {
 
   try {
 
-    checkPost(id);
+    await checkPost(id);
 
     const deletedPost = await prisma.post.delete({
       where: {

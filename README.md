@@ -1,4 +1,4 @@
-# Simp CRUD API
+# Simple CRUD API
 
 This is a simple CRUD API for managing posts
 

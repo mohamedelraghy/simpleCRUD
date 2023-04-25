@@ -16,6 +16,8 @@ This is a simple CRUD API for managing posts
   cd simpleCRUD
   npm install
 
+  `make sure mysql server is up and running at port 3306`
+
 ## Running the API
 
 To start the API, run the following command:

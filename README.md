@@ -10,7 +10,7 @@ This is a simple CRUD API for managing posts
 ## Installation
 
 1. Clone the repository:
-  https://github.com/mohamedelraghy/simpleCRUD.git
+  `https://github.com/mohamedelraghy/simpleCRUD.git`
 
 2. Install the dependencies:
   cd simpleCRUD
